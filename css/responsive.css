@@ -1,0 +1,113 @@
+
+/* Extra small devices (phones, 600px and down) */
+@media  screen and (min-width: 319px) {
+
+    .deck{
+      width: 95%;
+      min-height: 60vh;
+      margin-top: 1em;
+      flex-grow:1;
+      padding: 10px;
+    }
+
+    .score-panel {
+        width:90%
+
+
+    }
+    .deck .card {
+      flex: 1 0 20%; /* explanation below */
+      margin: 5px;
+      max-height: 70px;
+
+    }
+    .moves,
+    .timer,
+    .restart,
+    .stars {
+      font-size: 1em;
+      margin-left: 5px;
+    }
+
+  .score-panel .restart {
+      position: relative;
+      right: 10px;
+    }
+    #model {
+      width:100%;
+      min-height: 100vh;
+      padding-top: 40%;
+      text-align: center;
+      font-size: 1em;
+    }
+
+  }
+
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media screen and (min-width: 600px) {
+  .deck{
+      padding: 15px;
+  }
+
+
+  .deck .card {
+    flex: 1 0 20%; /* explanation below */
+    margin: 10px;
+    max-height: 100px;
+
+
+  }
+
+.score-panel{
+  width: 345px;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+  .deck{
+      padding: 20px;
+  }
+  .deck .card {
+    flex: 1 0 20%; /* explanation below */
+    margin: 15px;
+    max-height: 125px;
+
+   /* max-height: 125px;
+    max-width: 125px; */
+
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .deck{
+    width: 80%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .deck{
+    width: 75%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .deck {
+      width: 550px;
+      max-height: 560px
+
+  }
+
+  .deck .card {
+    flex: 1 0 15%; /* explanation below */
+    margin: 15px;
+    max-height: 70px;
+
+   /* max-height: 125px;
+    max-width: 125px; */
+
+  }
+}
