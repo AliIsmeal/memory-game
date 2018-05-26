@@ -99,9 +99,9 @@ restart.onclick = restartGame;
 
 
 // restart the game
-function restartGame(){
+function restartGame() {
   console.log("im working");
-  deck.innerHTML="";
+  deck.innerHTML = "";
   list = shuffle(list);
   createElements();
   addEvents();
@@ -109,17 +109,21 @@ function restartGame(){
   min = 0;
   totalMin = 0;
   count = 0;
-  moveNumber =0;
-  document.getElementById("no-moves").innerHTML =moveNumber;
+  moveNumber = 0;
+  document.getElementById("no-moves").innerHTML = moveNumber;
   let starTwo = document.getElementById("star-two");
   let starThree = document.getElementById("star-three");
-  addRemoveClasses(starTwo,"fa-star","fa-star-o");
-  addRemoveClasses(starThree,"fa-star","fa-star-o");
-    };
+  addRemoveClasses(starTwo, "fa-star", "fa-star-o");
+  addRemoveClasses(starThree, "fa-star", "fa-star-o");
+  correctElements = [];
+
+  // GameTimer();
+};
 
 
 //this function is used to loop through each card and create its HTML and add each card's HTML to the page
 createElements();
+
 function createElements() {
   const deck = document.getElementById("deck"); // Get the <ul> element in the document
   for (let i = 0; i < 16; i++) {
@@ -132,20 +136,19 @@ function createElements() {
     let liClass = li.setAttribute("class", "card"); // Create a "class" attribute
     let liName = li.setAttribute("name", cardName); // Create a "name" attribute
     let IconClass = icon.setAttribute("class", cardClass); // Create a "class" attribute
-    li.appendChild(icon);//append the i element to li element
+    li.appendChild(icon); //append the i element to li element
     deck.appendChild(li); //append the li element to ul element
 
   }
 };
 
-playAgain.onclick =function(){
+playAgain.onclick = function() {
   document.getElementById("model").style.display = "none";
-  correctElements = [];
   restartGame();
 
 };
- // this function is used to pass the value of 'event' and refrence to remove
- // the addEventListener after clicking on the card
+// this function is used to pass the value of 'event' and refrence to remove
+// the addEventListener after clicking on the card
 let events = function(e) {
   listener(e.target);
 };
@@ -153,6 +156,7 @@ let events = function(e) {
 // this function is used to iterate through the list array and add
 // addEventListener to each element on click event
 addEvents();
+
 function addEvents() {
   for (let i = 0; i < list.length; i++) {
     document.getElementById(list[i].id).addEventListener("click", events, false);
@@ -160,7 +164,7 @@ function addEvents() {
 };
 
 
-function removeEvents(){
+function removeEvents() {
   for (let i = 0; i < list.length; i++) {
     document.getElementById(list[i].id).removeEventListener("click", events, false);
   }
@@ -196,31 +200,32 @@ function listOfOpenedCard(that, opencard) {
     thatcard: that
   };
 
-  if  (OcardList.length <2) {
+  if (OcardList.length < 2) {
     OcardList.push(openCards);
   };
 
   if (OcardList.length === 2) {
-      document.removeEventListener("click", events, false);
-      matchCards(OcardList[0], OcardList[1]);
-      removeEvents();
-      let  moveNumber;
-      moveNumber = moveCounter();
-      console.log(moveNumber);
-      document.getElementById("no-moves").innerHTML =moveNumber;
+    document.removeEventListener("click", events, false);
+    matchCards(OcardList[0], OcardList[1]);
+    removeEvents();
+    let moveNumber;
+    moveNumber = moveCounter();
 
-      moveNumber === 12 ? emptyStars("star-three") : moveNumber === 16 ? emptyStars("star-two") : undefined;
+    document.getElementById("no-moves").innerHTML = moveNumber;
+
+    moveNumber === 12 ? emptyStars("star-three") : moveNumber === 16 ? emptyStars("star-two") : undefined;
 
     function emptyStars(starNo) {
-       let star = document.getElementById(starNo);
-       addRemoveClasses(star, "fa-star-o", "fa-star");
+      let star = document.getElementById(starNo);
+      addRemoveClasses(star, "fa-star-o", "fa-star");
     };
   };
 };
 
 
 //this function is used to  increment the move counter and display it on the page
-let count =0;
+let count = 0;
+
 function moveCounter() {
   count += 1;
   return count;
@@ -228,7 +233,7 @@ function moveCounter() {
 
 // this function is used to add class and remove another class
 function addRemoveClasses(element, add, remove) {
-  console.log(element, add, remove);
+
   (element).classList.add(add);
   (element).classList.remove(remove);
 };
@@ -239,13 +244,13 @@ function matchCards(first, second) {
     //if two card match the addRemoveClasses to add match class and remove open class to opend cards
     addRemoveClasses(first.thatcard, "match", "open");
     addRemoveClasses(second.thatcard, "match", "open");
-    setTimeout(addEvents ,1000);
+    setTimeout(addEvents, 1000);
     //empty OcardList array
     OcardList = [];
     // correctElements is used to add the text matched to it,then it will be used to check if
     // the lenght of the array =8 and that mean all the cards matched and the game is over
     correctElements.push("matched");
-      console.log(correctElements);
+    console.log(correctElements.length);
     if (correctElements.length === 8) {
 
       clearTimeout(myTimer);
@@ -261,7 +266,7 @@ function matchCards(first, second) {
     first.thatcard.addEventListener("click", events, false);
     second.thatcard.addEventListener("click", events, false);
 
-    let closingCardtimer = setTimeout(function (){
+    let closingCardtimer = setTimeout(function() {
       OcardList[0].thatcard.classList.remove("open", "show");
       OcardList[1].thatcard.classList.remove("open", "show");
       addEvents();
@@ -274,7 +279,12 @@ let seconds = 0;
 let min = 0;
 let totalMin = 0;
 // use setInterval to initialize the game timer by calling the timerFunc() every second
-let myTimer = setInterval(timerFunc, 1000);
+let myTimer;
+
+function GameTimer() {
+  myTimer = setInterval(timerFunc, 1000);
+};
+
 
 function timerFunc() {
   min = Math.floor(seconds / 60);
@@ -282,7 +292,7 @@ function timerFunc() {
   if (seconds === 60) {
     seconds = 0;
   };
-// if the second less than 10 zero() is used to insert a 0 on the left of the seconds
+  // if the second less than 10 zero() is used to insert a 0 on the left of the seconds
   function zero() {
     if (seconds < 10) {
       return "0"
@@ -301,3 +311,5 @@ function timerFunc() {
   seconds++;
   return time;
 };
+GameTimer();
+window.onload = restartGame();
