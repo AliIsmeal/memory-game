@@ -116,6 +116,7 @@ function restartGame() {
   addRemoveClasses(starTwo, "fa-star", "fa-star-o");
   addRemoveClasses(starThree, "fa-star", "fa-star-o");
   correctElements = [];
+  GameTimer();
 
   // GameTimer();
 };
@@ -282,6 +283,7 @@ let totalMin = 0;
 let myTimer;
 
 function GameTimer() {
+  clearTimeout(myTimer);
   myTimer = setInterval(timerFunc, 1000);
 };
 
@@ -311,5 +313,4 @@ function timerFunc() {
   seconds++;
   return time;
 };
-GameTimer();
 window.onload = restartGame();
