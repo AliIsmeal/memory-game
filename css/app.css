@@ -101,13 +101,18 @@ h1 {
   transform: rotateY(180deg);
   background: #02b3e4;
   cursor: default;
+  -webkit-animation-name: flip;
+  animation-name: flip;
+  animation-timing-function: ease-in;
+  animation: flip 0.2s;
+  -webkit-animation: flip 0.2s;
+  -webkit-animation-name: rotateIn;
+  animation-name: rotateIn;
 }
 
 .deck .card.show {
   font-size: 33px;
   cursor: not-allowed;
-  -webkit-animation-name: rotateIn;
-  animation-name: rotateIn;
 }
 
 .deck .card.match {
@@ -117,6 +122,8 @@ h1 {
   animation-timing-function: ease-in;
   animation: bounce 0.5s;
   -webkit-animation: bounce 0.5s;
+  -webkit-animation-name: wobble;
+  animation-name: wobble;
 }
 
 * keyframes */ @keyframes bounce {
@@ -137,39 +144,37 @@ h1 {
   }
 }
 
-.deck .card.match {
-  cursor: not-allowed;
-  background: #02ccba;
-  font-size: 33px;
-  -webkit-animation-name: wobble;
-  animation-name: wobble;
-}
-
 @keyframes wobble {
   from {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
+
   15% {
     -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
     transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
   }
+
   30% {
     -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
     transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
   }
+
   45% {
     -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
     transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
   }
+
   60% {
     -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
     transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
   }
+
   75% {
     -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
     transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
   }
+
   to {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -184,6 +189,7 @@ h1 {
     transform: rotate3d(0, 0, 1, -200deg);
     opacity: 0;
   }
+
   to {
     -webkit-transform-origin: center;
     transform-origin: center;
@@ -192,6 +198,7 @@ h1 {
     opacity: 1;
   }
 }
+
 
 @keyframes rotateIn {
   from {
@@ -201,6 +208,7 @@ h1 {
     transform: rotate3d(0, 0, 1, -200deg);
     opacity: 0;
   }
+
   to {
     -webkit-transform-origin: center;
     transform-origin: center;
@@ -210,9 +218,46 @@ h1 {
   }
 }
 
-/* */
 
-* Styles for the Score Panel */ .score-panel {
+
+
+
+/*
+@keyframes swing {
+  20% {
+    -webkit-transform: rotate3d(0, 0, 1, 15deg);
+    transform: rotate3d(0, 0, 1, 15deg);
+  }
+
+  40% {
+    -webkit-transform: rotate3d(0, 0, 1, -10deg);
+    transform: rotate3d(0, 0, 1, -10deg);
+  }
+
+  60% {
+    -webkit-transform: rotate3d(0, 0, 1, 5deg);
+    transform: rotate3d(0, 0, 1, 5deg);
+  }
+
+  80% {
+    -webkit-transform: rotate3d(0, 0, 1, -5deg);
+    transform: rotate3d(0, 0, 1, -5deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+} */
+
+
+
+
+/* */
+ * Styles for the Score Panel
+ */
+
+.score-panel {
   text-align: left;
   width: 345px;
   margin-bottom: 10px;
