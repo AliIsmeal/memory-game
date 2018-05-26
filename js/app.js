@@ -259,6 +259,8 @@ function matchCards(first, second) {
       document.getElementById("model").style.display = "block";
       document.getElementById("model-timer").innerHTML = timerFunc();
       document.getElementById("model-movesNo").innerHTML = document.getElementById("no-moves").innerHTML;
+     let modelStars= document.querySelector(".stars").innerHTML;
+     document.querySelector(".no-stars").innerHTML= modelStars;
     }
   }
   //if the 2 opend cards don't match re add the Events Listener (addEventListener)to them because it's alraedy
@@ -307,7 +309,8 @@ function timerFunc() {
 
   if (totalMin === 2) {
 
-    document.getElementById("congrats-gameOver").innerHTML = "<h1>Game Over</h1>"
+    document.getElementById("congrats-gameOver").innerHTML = "<h1>Game Over</h1>";
+
     document.getElementById("model").style.display = "block";
   }
   seconds++;
