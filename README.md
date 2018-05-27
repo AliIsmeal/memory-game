@@ -2,8 +2,13 @@
 
 ## Table of Contents
 
+<<<<<<< HEAD
 * [About](#About Memory Game Project)
 * [How](#How To Play)
+=======
+* [About Memory Game Project](#About Memory Game Project)
+* [How To Play](#How To Play)
+>>>>>>> origin/master
 * [Contributing](#contributing)
 
 ## About Memory Game Project
