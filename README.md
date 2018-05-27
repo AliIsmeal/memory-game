@@ -1,10 +1,5 @@
 # Matching Memory Game
 
-## Table of Contents
-
-* [About](#About Memory Game Project)
-* [How](#How To Play)
-* [Contributing](#contributing)
 
 ## About Memory Game Project
 
