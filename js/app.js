@@ -129,8 +129,8 @@ playAgain.onclick = function() {
 createElements();
 
 function createElements() {
-    const deck = document.getElementById("deck"); // Get the <ul> element in the document
-    for (cardObj of list) {
+  const deck = document.getElementById("deck"); // Get the <ul> element in the document
+  for (cardObj of list) {
     let id = cardObj.id;
     let cardName = cardObj.cardName;
     let cardClass = cardObj.cardClass;
@@ -156,14 +156,14 @@ let events = function(e) {
 addEvents();
 
 function addEvents() {
-  for (cardObj of list){
+  for (cardObj of list) {
     document.getElementById(cardObj.id).addEventListener("click", events, false);
   }
 };
 
 
 function removeEvents() {
-  for (cardObj of list){
+  for (cardObj of list) {
     document.getElementById(cardObj.id).removeEventListener("click", events, false);
   }
 }
@@ -253,11 +253,13 @@ function matchCards(first, second) {
 
       clearTimeout(myTimer);
       //if all cards have matched, display the model with a message with the final score and time
-      document.getElementById("model").style.display = "block";   
+      setTimeout(function() {
+        document.getElementById("model").style.display = "block";
+      }, 1000);
       document.getElementById("model-timer").innerHTML = timerFunc();
       document.getElementById("model-movesNo").innerHTML = document.getElementById("no-moves").innerHTML;
-     let modelStars= document.querySelector(".stars").innerHTML;
-     document.querySelector(".no-stars").innerHTML= modelStars;
+      let modelStars = document.querySelector(".stars").innerHTML;
+      document.querySelector(".no-stars").innerHTML = modelStars;
     }
   }
   //if the 2 opend cards don't match re add the Events Listener (addEventListener)to them because it's alraedy
