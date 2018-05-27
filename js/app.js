@@ -118,19 +118,22 @@ function restartGame() {
   correctElements = [];
   GameTimer();
 
-  // GameTimer();
 };
 
+playAgain.onclick = function() {
+  document.getElementById("model").style.display = "none";
+  restartGame();
+};
 
 //this function is used to loop through each card and create its HTML and add each card's HTML to the page
 createElements();
 
 function createElements() {
-  const deck = document.getElementById("deck"); // Get the <ul> element in the document
-  for (let i = 0; i < 16; i++) {
-    let id = list[i].id;
-    let cardName = list[i].cardName;
-    let cardClass = list[i].cardClass;
+    const deck = document.getElementById("deck"); // Get the <ul> element in the document
+    for (cardObj of list) {
+    let id = cardObj.id;
+    let cardName = cardObj.cardName;
+    let cardClass = cardObj.cardClass;
     let li = document.createElement("li");
     let icon = document.createElement("i");
     let liId = li.setAttribute("id", id); // Create a "id" attribute
@@ -139,15 +142,9 @@ function createElements() {
     let IconClass = icon.setAttribute("class", cardClass); // Create a "class" attribute
     li.appendChild(icon); //append the i element to li element
     deck.appendChild(li); //append the li element to ul element
-
   }
 };
 
-playAgain.onclick = function() {
-  document.getElementById("model").style.display = "none";
-  restartGame();
-
-};
 // this function is used to pass the value of 'event' and refrence to remove
 // the addEventListener after clicking on the card
 let events = function(e) {
@@ -159,15 +156,15 @@ let events = function(e) {
 addEvents();
 
 function addEvents() {
-  for (let i = 0; i < list.length; i++) {
-    document.getElementById(list[i].id).addEventListener("click", events, false);
+  for (cardObj of list){
+    document.getElementById(cardObj.id).addEventListener("click", events, false);
   }
 };
 
 
 function removeEvents() {
-  for (let i = 0; i < list.length; i++) {
-    document.getElementById(list[i].id).removeEventListener("click", events, false);
+  for (cardObj of list){
+    document.getElementById(cardObj.id).removeEventListener("click", events, false);
   }
 }
 //this function is used to remove Events Listener
@@ -256,7 +253,7 @@ function matchCards(first, second) {
 
       clearTimeout(myTimer);
       //if all cards have matched, display the model with a message with the final score and time
-      document.getElementById("model").style.display = "block";
+      document.getElementById("model").style.display = "block";   
       document.getElementById("model-timer").innerHTML = timerFunc();
       document.getElementById("model-movesNo").innerHTML = document.getElementById("no-moves").innerHTML;
      let modelStars= document.querySelector(".stars").innerHTML;
