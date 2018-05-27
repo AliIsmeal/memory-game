@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-* [About Memory Game Project](#About Memory Game Project)
-* [How To Play](#How To Play)
+* [About](#About Memory Game Project)
+* [How](#How To Play)
 * [Contributing](#contributing)
 
 ## About Memory Game Project
