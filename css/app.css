@@ -182,6 +182,7 @@
       transform: rotate3d(0, 0, 1, -200deg);
       opacity: 0;
     }
+
     to {
       -webkit-transform-origin: center;
       transform-origin: center;
