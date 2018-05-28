@@ -1,16 +1,5 @@
 # Matching Memory Game
 
-## Table of Contents
-
-<<<<<<< HEAD
-* [About](#About Memory Game Project)
-* [How](#How To Play)
-=======
-* [About Memory Game Project](#About Memory Game Project)
-* [How To Play](#How To Play)
->>>>>>> origin/master
-* [Contributing](#contributing)
-
 ## About Memory Game Project
 
 The starter project was provided by Udacity, It included some HTML and CSS styling  to display a static version of the Memory Game project. my task was converting this project from a static project to an interactive one. This required modifying the HTML and CSS files but primarily the JavaScript file, and adding responsive design to display the memory game on small, medium and large devices.
