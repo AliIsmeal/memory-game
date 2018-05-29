@@ -1,7 +1,41 @@
-    /*
-          Create a array of  list that holds all of  cards object
-          */
-    let list = [{
+  let OcardList = [];
+  let correctElements = [];
+  let openCards;
+  let list;
+  let events;
+  let starTwo;
+  let starThree;
+//variabls for createElements()
+  let id;
+  let cardName;
+  let cardClass;
+  let li;
+  let icon;
+  let liId;
+  let liClass;
+  let liName;
+  let IconClass;
+
+  //variabls for GameTimer()
+  let seconds = 0;
+  let min = 0;
+  let totalMin = 0;
+  let myTimer = 0;
+// End of GameTimer Variables
+  let moveNumber;
+  let modelStars ;
+  let count = 0;
+  let star;
+  let closingCardtimer;
+  let thisElement;
+
+  const restart = document.querySelector(".restart");
+  const playAgain = document.querySelector(".play-again");
+
+
+  // Create a array of  list that holds all of  cards object
+
+     list = [{
         id: "first-diamond-card",
         cardClass: "fa fa-diamond",
         cardName: "diamond"
@@ -73,9 +107,10 @@
       }
     ];
 
-    list = shuffle(list);
 
     // shuffle the list of cards using the "shuffle" method below
+    list = shuffle(list);
+
     function shuffle(array) {
       var currentIndex = array.length,
         temporaryValue, randomIndex;
@@ -89,12 +124,9 @@
       }
 
       return array;
-    }
+    };
 
-    const restart = document.querySelector(".restart");
-    const playAgain = document.querySelector(".play-again");
-    // restart.addEventListener("click", restartGame);
-
+    //on click on restart icon call restartGame
     restart.onclick = restartGame;
 
 
@@ -111,13 +143,13 @@
       count = 0;
       moveNumber = 0;
       document.getElementById("no-moves").innerHTML = moveNumber;
-      let starTwo = document.getElementById("star-two");
-      let starThree = document.getElementById("star-three");
+      starTwo = document.getElementById("star-two");
+      starThree = document.getElementById("star-three");
       addRemoveClasses(starTwo, "fa-star", "fa-star-o");
       addRemoveClasses(starThree, "fa-star", "fa-star-o");
       correctElements = [];
+      OcardList = [];
       GameTimer();
-
     };
 
     playAgain.onclick = function() {
@@ -131,15 +163,15 @@
     function createElements() {
       const deck = document.getElementById("deck"); // Get the <ul> element in the document
       for (cardObj of list) {
-        let id = cardObj.id;
-        let cardName = cardObj.cardName;
-        let cardClass = cardObj.cardClass;
-        let li = document.createElement("li");
-        let icon = document.createElement("i");
-        let liId = li.setAttribute("id", id); // Create a "id" attribute
-        let liClass = li.setAttribute("class", "card"); // Create a "class" attribute
-        let liName = li.setAttribute("name", cardName); // Create a "name" attribute
-        let IconClass = icon.setAttribute("class", cardClass); // Create a "class" attribute
+        id = cardObj.id;
+        cardName = cardObj.cardName;
+        cardClass = cardObj.cardClass;
+        li = document.createElement("li");
+        icon = document.createElement("i");
+        liId = li.setAttribute("id", id); // Create a "id" attribute
+        liClass = li.setAttribute("class", "card"); // Create a "class" attribute
+        liName = li.setAttribute("name", cardName); // Create a "name" attribute
+        IconClass = icon.setAttribute("class", cardClass); // Create a "class" attribute
         li.appendChild(icon); //append the i element to li element
         deck.appendChild(li); //append the li element to ul element
       }
@@ -147,7 +179,7 @@
 
     // this function is used to pass the value of 'event' and refrence to remove
     // the addEventListener after clicking on the card
-    let events = function(e) {
+   events = function(e) {
       listener(e.target);
     };
 
@@ -169,13 +201,12 @@
     }
     //this function is used to remove Events Listener
     function listener(thisCard) {
-      let thisElement = thisCard.getAttribute("name");
+      thisElement = thisCard.getAttribute("name");
 
       thisCard.removeEventListener("click", events, false);
 
       mainCards(thisCard, thisElement);
     };
-
 
 
     // after adding Events Listener to the list array this function will be called to call 2 functions
@@ -189,11 +220,9 @@
       that.classList.add("show", "open");
     };
 
-    let OcardList = [];
-    let correctElements = [];
 
     function listOfOpenedCard(that, opencard) {
-      let openCards = {
+        openCards = {
         fliped: opencard,
         thatcard: that
       };
@@ -206,7 +235,7 @@
         document.removeEventListener("click", events, false);
         matchCards(OcardList[0], OcardList[1]);
         removeEvents();
-        let moveNumber;
+        moveNumber;
         moveNumber = moveCounter();
 
         document.getElementById("no-moves").innerHTML = moveNumber;
@@ -214,7 +243,7 @@
         moveNumber === 12 ? emptyStars("star-three") : moveNumber === 16 ? emptyStars("star-two") : undefined;
 
         function emptyStars(starNo) {
-          let star = document.getElementById(starNo);
+          star = document.getElementById(starNo);
           addRemoveClasses(star, "fa-star-o", "fa-star");
         };
       };
@@ -222,7 +251,6 @@
 
 
     //this function is used to  increment the move counter and display it on the page
-    let count = 0;
 
     function moveCounter() {
       count += 1;
@@ -259,7 +287,7 @@
           }, 300);
           document.getElementById("model-timer").innerHTML = timerFunc();
           document.getElementById("model-movesNo").innerHTML = document.getElementById("no-moves").innerHTML;
-          let modelStars = document.querySelector(".stars").innerHTML;
+          modelStars = document.querySelector(".stars").innerHTML;
           document.querySelector(".no-stars").innerHTML = modelStars;
         }
       }
@@ -269,7 +297,7 @@
         first.thatcard.addEventListener("click", events, false);
         second.thatcard.addEventListener("click", events, false);
 
-        let closingCardtimer = setTimeout(function() {
+          closingCardtimer = setTimeout(function() {
           OcardList[0].thatcard.classList.remove("open", "show");
           OcardList[1].thatcard.classList.remove("open", "show");
           addEvents();
@@ -278,10 +306,7 @@
       }
     };
 
-    let seconds = 0;
-    let min = 0;
-    let totalMin = 0;
-    let myTimer = 0;
+
     // use setInterval to initialize the game timer by calling the timerFunc() every second
     function GameTimer() {
       clearTimeout(myTimer);
